@@ -1,0 +1,17 @@
+name: run-tests
+on: 
+  push:
+jobs:
+  unit-tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Read .nvmrc
+        id: node_version
+        run: echo ::set-output name=NODE_VERSION::$(head -1 .nvmrc)
+      - name: Use Node.js ${{ steps.node_version.outputs.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with: 
+          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
+      - run: npm ci 
+      - run: npm test
