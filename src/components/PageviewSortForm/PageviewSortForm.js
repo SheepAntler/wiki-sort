@@ -37,14 +37,14 @@ const PageviewSortForm = () => {
         .then((res) => {
           setResults(res);
           setMessage(
-            `Here's what people in ${country} were reading on ${formattedCountDate}...`
+            `Here's what people in ${country} were reading on ${new Date(pageviewCountDate).toLocaleDateString()}...`
           );
         })
         .catch((err) => {
           console.error(err);
           setResults([]);
           setMessage(
-            `Ruh-roh! It looks like there aren't any results for that country on ${pageviewCountDate}. Try again!`
+            `Ruh-roh! It looks like there aren't any results for ${country} on ${pageviewCountDate}. Try again!`
           );
         });
     };
