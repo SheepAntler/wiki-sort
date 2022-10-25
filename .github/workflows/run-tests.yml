@@ -13,8 +13,5 @@ jobs:
         uses: actions/setup-node@v1
         with: 
           node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
+      - run: npm ci 
       - run: npm test
-        env: 
-          CI: true
-          NODE_ENV: ci
-          TZ: UTC
